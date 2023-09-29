@@ -8,9 +8,9 @@ import {
   MenuItem,
   MenuItemConstructorOptions,
 } from 'electron';
-import * as log from 'loglevel';
 
 import { cleanupPlainText, isOSX, openExternal } from '../helpers/helpers';
+import * as log from '../helpers/loggingHelper';
 import {
   clearAppData,
   getCurrentURL,
@@ -45,7 +45,7 @@ export function createMenu(
   options: OutputOptions,
   mainWindow: BrowserWindow,
 ): void {
-  log.debug('createMenu', { options, mainWindow });
+  log.debug('createMenu', { options });
   const menuTemplate = generateMenu(options, mainWindow);
 
   injectBookmarks(menuTemplate);
@@ -153,7 +153,7 @@ export function generateMenu(
     submenu: [
       {
         label: 'Back',
-        accelerator: isOSX() ? 'CmdOrAlt+Left' : 'Alt+Left',
+        accelerator: isOSX() ? 'Cmd+Left' : 'Alt+Left',
         click: goBack,
       },
       {
